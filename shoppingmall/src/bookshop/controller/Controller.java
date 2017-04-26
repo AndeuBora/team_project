@@ -46,9 +46,9 @@ public class Controller extends HttpServlet {
 		ServletContext context = config.getServletContext(); // 루트 경로
 		String real_path = context.getRealPath("/property") + "\\" + props; // 시스템상
 																			// 절대경로변환
-		System.out.println("props=" + props);
-		System.out.println("context=" + context);
-		System.out.println("real_path=" + real_path);
+		System.out.println("props = " + props);
+		System.out.println("context = " + context);
+		System.out.println("real_path = " + real_path);
 
 		// 명령어 처리 클래스와 매핑정보 저장할 properties객체
 		Properties pr = new Properties();
@@ -78,8 +78,8 @@ public class Controller extends HttpServlet {
 				Object command_instance = command_class.newInstance();
 				commandMap.put(command, command_instance); // map(명령어,클래스)추가
 
-				System.out.println("command=" + command_class);
-				System.out.println("command_instance=" + command_instance);
+				System.out.println("command = " + command_class);
+				System.out.println("command_instance = " + command_instance);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (InstantiationException e) {
@@ -130,8 +130,8 @@ public class Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		//view 값 설정후 forward로 요청응답객체 같이 보내줌
-		System.out.println("com="+com);
-		System.out.println("view="+view);
+		System.out.println("com = "+com);
+		System.out.println("view = "+view);
 		request.setAttribute("cont", view);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
