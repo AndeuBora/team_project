@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class CartDBBean {
+	//사용자 영역 장바구니 관련 DBBEAN
+	
 	private static CartDBBean instance = new CartDBBean();
 
 	public static CartDBBean getInstance() {
@@ -25,7 +27,7 @@ public class CartDBBean {
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource) envCtx.lookup("jdbc/jsptest");
+		DataSource ds = (DataSource) envCtx.lookup("jdbc/test");
 		return ds.getConnection();
 	}
 
@@ -44,7 +46,7 @@ public class CartDBBean {
 			pstmt.setString(2, cart.getBuyer());
 			pstmt.setString(3, cart.getBook_title());
 			pstmt.setInt(4, cart.getBuy_price());
-			pstmt.setByte(5, cart.getBuy_count());
+			pstmt.setInt(5, cart.getBuy_count());
 			pstmt.setString(6, cart.getBook_image());
 
 			pstmt.executeUpdate();
@@ -141,7 +143,7 @@ public class CartDBBean {
 				cart.setBook_id(rs.getInt("book_id"));
 				cart.setBook_title(rs.getString("book_title"));
 				cart.setBuy_price(rs.getInt("buy_price"));
-				cart.setBuy_count(rs.getByte("buy_count"));
+				cart.setBuy_count(rs.getInt("buy_count"));
 				cart.setBook_image(rs.getString("book_image"));
 
 				lists.add(cart);
@@ -176,14 +178,14 @@ public class CartDBBean {
 	}
 
 	// 장바구니에서 수량 수정 시 실행되는 메소드
-	public void updateCount(int cart_id, byte count) throws Exception {
+	public void updateCount(int cart_id, int count) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("update cart set buy_count=? where cart_id=?");
-			pstmt.setByte(1, count);
+			pstmt.setInt(1, count);
 			pstmt.setInt(2, cart_id);
 
 			pstmt.executeUpdate();
