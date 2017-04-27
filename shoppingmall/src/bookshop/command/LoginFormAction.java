@@ -1,15 +1,17 @@
+
+/* 승환 : 894 페이지 */
+
 package bookshop.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ManagerLoginFormAction implements CommandAction {
+public class LoginFormAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// 보라 802page
-		
-		return "/mngr/logon/mLoginForm.jsp";
+		request.setAttribute("type", new Integer(1));
+		return "/member/loginForm.jsp";
 	}
 
 }

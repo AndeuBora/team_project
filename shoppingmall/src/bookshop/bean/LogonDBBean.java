@@ -1,3 +1,6 @@
+
+/* 승환 : 859 페이지 */
+
 package bookshop.bean;
 
 import java.sql.Connection;

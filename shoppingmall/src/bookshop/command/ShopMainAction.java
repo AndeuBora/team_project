@@ -1,3 +1,6 @@
+
+/* 승환 : 870 페이지 */
+
 package bookshop.command;
 
 import java.util.ArrayList;
@@ -10,7 +13,6 @@ import bookshop.bean.MngrDBBean;
 import bookshop.bean.MngrDataBean;
 
 public class ShopMainAction implements CommandAction {
-	// 승환 870page~
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		MngrDataBean bookList[] = null;
