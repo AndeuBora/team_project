@@ -1,3 +1,6 @@
+
+/* 승환 : 877 페이지 */
+
 package bookshop.command;
 
 import java.util.List;
@@ -11,8 +14,6 @@ import bookshop.bean.QnaDBBean;
 import bookshop.bean.QnaDataBean;
 
 public class BookContentAction implements CommandAction {
-	//태준
-
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		List<QnaDataBean> qnaLists;
