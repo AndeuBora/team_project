@@ -412,9 +412,9 @@ public class MngrDBBean {
 		}
 		return dto;
 	}
-	
-	//등록된책 정보 수정시
-	public void updateBook(MngrDataBean dto,int book_id) throws Exception {
+
+	// 등록된책 정보 수정시
+	public void updateBook(MngrDataBean dto, int book_id) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 
@@ -434,6 +434,30 @@ public class MngrDBBean {
 			ps.setString(9, dto.getBook_content());
 			ps.setInt(10, dto.getDiscount_rate());
 			ps.setInt(11, book_id);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// 등록된책 정보 삭제시
+	public void deleteBook(int book_id) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = getConnection();
+			ps = con.prepareStatement("delete from book where book_id=?");
+			ps.setInt(1, book_id);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
