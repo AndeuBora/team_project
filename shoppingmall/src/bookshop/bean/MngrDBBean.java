@@ -19,7 +19,7 @@ public class MngrDBBean {
 	// 전역객체 (한 객체만 생성해서 공유)
 	private static MngrDBBean instance = new MngrDBBean();
 
-	private static MngrDBBean get_instance() {
+	public static MngrDBBean get_instance() {
 		return instance;
 	}
 

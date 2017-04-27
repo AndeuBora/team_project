@@ -10,13 +10,13 @@ import bookshop.bean.MngrDBBean;
 import bookshop.bean.MngrDataBean;
 
 public class ShopMainAction implements CommandAction {
-
+	// 승환 870page~
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		MngrDataBean bookList[] = null;
 		List<MngrDataBean[]> bookLists = new ArrayList<MngrDataBean[]>();
 
-		MngrDataBean bookProcess = MngrDBBean.getInstance(); // DB 연동
+		MngrDBBean bookProcess = MngrDBBean.get_instance(); // DB 연동
 
 		// 카테고리별 최신의 상품 3개씩 얻어내서 List에 저장
 		for (int i = 1; i <= 3; i++) {
