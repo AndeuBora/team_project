@@ -11,6 +11,7 @@ import bookshop.bean.QnaDBBean;
 import bookshop.bean.QnaDataBean;
 
 public class BookContentAction implements CommandAction {
+	//태준
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -19,7 +20,7 @@ public class BookContentAction implements CommandAction {
 		int book_id = Integer.parseInt(request.getParameter("book_id"));
 
 		// book_id에 해당하는 상품을 얻어냄
-		MngrDBBean bookProcess = MngrDBBean.getInstance();
+		MngrDBBean bookProcess = MngrDBBean.get_instance();
 		MngrDataBean book = bookProcess.getBook(book_id);
 
 		// book_id에 해당하는 상품의 QnA 수를 얻어냄
