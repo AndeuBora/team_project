@@ -63,9 +63,9 @@ public class QnaDBBean {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, article.getBook_id());
-			pstmt.setString(2, article.getBook_tile());
+			pstmt.setString(2, article.getBook_title());
 			pstmt.setString(3, article.getQna_writer());
-			pstmt.setString(4, article.getQna_conent());
+			pstmt.setString(4, article.getQna_content());
 			pstmt.setInt(5, group_id);
 			pstmt.setInt(6, article.getQora());
 			pstmt.setInt(7, article.getReply());
@@ -114,9 +114,9 @@ public class QnaDBBean {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, article.getBook_id());
-			pstmt.setString(2, article.getBook_tile());
+			pstmt.setString(2, article.getBook_title());
 			pstmt.setString(3, article.getQna_writer());
-			pstmt.setString(4, article.getQna_conent());
+			pstmt.setString(4, article.getQna_content());
 			pstmt.setInt(5, article.getGroup_id());
 			pstmt.setInt(6, article.getQora());
 			pstmt.setInt(7, article.getReply());
@@ -205,7 +205,7 @@ public class QnaDBBean {
 		int x = 0;
 
 		try {
-
+			conn = getConnection();
 			pstmt = conn.prepareStatement("select count(*) from qna where book_id=" + book_id);
 
 			rs = pstmt.executeQuery();
@@ -257,9 +257,9 @@ public class QnaDBBean {
 					QnaDataBean article = new QnaDataBean();
 					article.setQna_id(rs.getInt("qna_id"));
 					article.setBook_id(rs.getInt("book_id"));
-					article.setBook_tile(rs.getString("book_title"));
+					article.setBook_title(rs.getString("book_title"));
 					article.setQna_writer(rs.getString("qna_writer"));
-					article.setQna_conent(rs.getString("qna_content"));
+					article.setQna_content(rs.getString("qna_content"));
 					article.setGroup_id(rs.getInt("group_id"));
 					article.setQora(rs.getInt("qora"));
 					article.setReply(rs.getInt("reply"));
@@ -301,37 +301,36 @@ public class QnaDBBean {
 		List<QnaDataBean> articleList = null;// 글목록을 저장하는 객체
 
 		try {
-			
+
 			conn = getConnection();
-			
-			pstmt =conn.prepareStatement(
-					"select * from qna where book_id="+book_id+" order by group_id desc,"
-					+"qora asc");
+
+			pstmt = conn.prepareStatement(
+					"select * from qna where book_id=" + book_id + " order by group_id desc," + "qora asc");
 
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {//ResultSet이 레코드를 가짐
-			
+
+			if (rs.next()) {// ResultSet이 레코드를 가짐
+
 				articleList = new ArrayList<QnaDataBean>(count);
-				do{
+				do {
 					QnaDataBean article = new QnaDataBean();
-					
+
 					article.setQna_id(rs.getInt("qna_id"));
 					article.setBook_id(rs.getInt("book_id"));
-					article.setBook_tile(rs.getString("book_title"));
+					article.setBook_title(rs.getString("book_title"));
 					article.setQna_writer(rs.getString("qna_writer"));
-					article.setQna_conent(rs.getString("qna_content"));
+					article.setQna_content(rs.getString("qna_content"));
 					article.setGroup_id(rs.getInt("group_id"));
 					article.setQora(rs.getInt("qora"));
 					article.setReply(rs.getInt("reply"));
 					article.setReg_date(rs.getTimestamp("reg_date"));
-				
-					//List 객체에 데치너 저장빈인 BoardDataBean 객체를 저장
-					
+
+					// List 객체에 데치너 저장빈인 BoardDataBean 객체를 저장
+
 					articleList.add(article);
-				}while(rs.next());
+				} while (rs.next());
 			}
-		
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -352,144 +351,140 @@ public class QnaDBBean {
 				} catch (SQLException e) {
 				}
 		}
-		
-		return articleList;//List 객체의 레퍼런스를 리턴
+
+		return articleList;// List 객체의 레퍼런스를 리턴
 	}
-	
-	//QnA글 수정 폼에서 사용할 글의 내용
-	 public QnaDataBean updateGetArticle(int qna_id){
-		 Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			QnaDataBean article= null;
-			
-			try {
-				
-				conn=getConnection();
-				
-			pstmt = conn.prepareStatement(
-					"select * from qna where qna_id =?");
+
+	// QnA글 수정 폼에서 사용할 글의 내용
+	public QnaDataBean updateGetArticle(int qna_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		QnaDataBean article = null;
+
+		try {
+
+			conn = getConnection();
+
+			pstmt = conn.prepareStatement("select * from qna where qna_id =?");
 			pstmt.setInt(1, qna_id);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				
+
+			if (rs.next()) {
+
 				article = new QnaDataBean();
 				article.setQna_id(rs.getInt("qna_id"));
 				article.setBook_id(rs.getInt("book_id"));
-				article.setBook_tile(rs.getString("book_title"));
+				article.setBook_title(rs.getString("book_title"));
 				article.setQna_writer(rs.getString("qna_writer"));
-				article.setQna_conent(rs.getString("qna_content"));
+				article.setQna_content(rs.getString("qna_content"));
 				article.setGroup_id(rs.getInt("group_id"));
 				article.setQora(rs.getInt("qora"));
 				article.setReply(rs.getInt("reply"));
 				article.setReg_date(rs.getTimestamp("reg_date"));
 			}
-				
-				
-			} catch (Exception e) {
-  e.printStackTrace();
-			}finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException e) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
 
-			}
-			return article;
-			
-	 
-	 }
-	
-	//QnA글수정 처리에서 사용
-	  public int updateArticle(QnaDataBean article){
-		  Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			int x=-1;
-			
-			try {
-				
-				conn = getConnection();
-				
-				String sql="update qna set qna_content=? where qna_id=?";
-				pstmt =conn.prepareStatement(sql);
-				pstmt.setString(1, article.getQna_conent());
-				pstmt.setInt(2, article.getQna_id());
-				pstmt.executeUpdate();
-				
-				x=1;
-			} catch (Exception e) {
-        e.printStackTrace();
-			
-			}finally{
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException e) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
-			}
-			return x;
-	  }
-	  
-	  //QnA 글 수정 삭제 처리 시 사용
-	  
-	  public int deleteArticle(int qna_id){
-		  Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			int x=-1;
-			
-			try {
-				
-				conn=getConnection();
-				pstmt =conn.prepareStatement(
-						"delete from qna where qna_id=?");
-				
-				pstmt.setInt(1, qna_id);
-				pstmt.executeUpdate();
-				
-			} catch (Exception e) {
-                 e.printStackTrace();
-			
-			}finally{
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException e) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
-			}
-			return x;
-	  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+
+		}
+		return article;
+
+	}
+
+	// QnA글수정 처리에서 사용
+	public int updateArticle(QnaDataBean article) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+
+		try {
+
+			conn = getConnection();
+
+			String sql = "update qna set qna_content=? where qna_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, article.getQna_content());
+			pstmt.setInt(2, article.getQna_id());
+			pstmt.executeUpdate();
+
+			x = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
+		return x;
+	}
+
+	// QnA 글 수정 삭제 처리 시 사용
+
+	public int deleteArticle(int qna_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+
+		try {
+
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from qna where qna_id=?");
+
+			pstmt.setInt(1, qna_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
+		return x;
+	}
 }
