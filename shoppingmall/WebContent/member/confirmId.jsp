@@ -13,6 +13,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-	<p id="ck">${check}
+	<p id="ck">${check};
 </body>
 </html>
