@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<c:if test="${empty sessionScope.id}">
+		<meta http-equiv="Refresh" content="0;url=/shoppingmall/index.do">
+	</c:if>
+
+	<div id="updateResult">
+		<p>${msg}
+	</div>
+
+	<div id="cartDeletePro">
+		<form action="/shoppingmall/cartList.do" method="post"
+			id="cartDeletePro">
+			<input type="hidden" name="buyer" value="${sessionScope.id}">
+			<input type="submit" value="장바구니로 되돌아 가기">
+		</form>
+	</div>
+</body>
+</html>
