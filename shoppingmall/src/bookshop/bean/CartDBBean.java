@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 public class CartDBBean {
 	//사용자 영역 장바구니 관련 DBBEAN
-	
+	//926page~
 	private static CartDBBean instance = new CartDBBean();
 
 	public static CartDBBean getInstance() {

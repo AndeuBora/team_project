@@ -3,7 +3,7 @@ package bookshop.bean;
 public class CartDataBean {
 	
 	//사용자 영역  장바구니 관련 DATABEAN
-	
+//924page~
 	private int cart_id; // 장바구니의 아이디
 	private String buyer; // 구매자
 	private int book_id;// 구매된 책의 아이디

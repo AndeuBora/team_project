@@ -9,7 +9,7 @@ import bookshop.bean.CartDBBean;
 import bookshop.bean.CartDataBean;
 
 public class CartListAction implements CommandAction {
-
+//936page~
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
