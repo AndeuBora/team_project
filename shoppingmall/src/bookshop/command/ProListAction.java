@@ -1,3 +1,6 @@
+
+/* 승환 : 873 페이지 */
+
 package bookshop.command;
 
 import java.util.List;
@@ -9,7 +12,6 @@ import bookshop.bean.MngrDBBean;
 import bookshop.bean.MngrDataBean;
 
 public class ProListAction implements CommandAction {
-	//승환 873page~
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		List<MngrDataBean> bookList = null;

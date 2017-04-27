@@ -1,3 +1,6 @@
+
+/* 승환 : 890 페이지 */
+
 $(document).ready(function() {
 	$("#checkId").check(function() { // [ID중복확인] 버튼 클릭
 		if ($("#id").val()) {
