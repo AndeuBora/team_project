@@ -1,3 +1,6 @@
+
+/* 승환 : 857 페이지 */
+
 package bookshop.bean;
 
 import java.sql.Timestamp;

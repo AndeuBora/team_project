@@ -1,3 +1,6 @@
+
+<!-- 승환 : 895 페이지 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%-- 코어 : --%>
@@ -14,9 +17,6 @@
 <script src="/shoppingmall/member/login.js"></script>
 </head>
 <body>
-
-	<!-- 895 페이지 -->
-
 	<c:if test="${empty sessionScope.id}">
 		<div id="lStatus">
 			<ul>
