@@ -30,7 +30,7 @@
 			</ul>
 		</div>
 	</c:if>
-	<c:if test=""${!empty sessionScope.id}">
+	<c:if test="${!empty sessionScope.id}">
 		<div id="lStatus">
 			<ul>
 				<li>${sessionScope.id}님이로그인 하셨습니다.
