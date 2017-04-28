@@ -20,8 +20,8 @@ public class QnaReplyFormAction implements CommandAction {
 		
      //QnA 답변에 필요한 정보를 얻어냄
       int book_id = qna.getBook_id();
-      String book_title=qna.getBook_title();
-      String qna_content =qna.getQna_content();
+      String book_title=qna.getBook_tile();
+      String qna_content =qna.getQna_conent();
       byte qora= 2;//답변글
       
       request.setAttribute("qna_id", new Integer(qna_id));
